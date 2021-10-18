@@ -2,7 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const db = require('./data/db-config')
-
+const userRouter = require('./users/user-router');
 function getAllUsers() { return db('users') }
 
 async function insertUser(user) {
@@ -18,9 +18,11 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-server.get('/api/users', async (req, res) => {
-  res.json(await getAllUsers())
-})
+server.use('/api/users', userRouter)
+
+// server.get('/api/users', async (req, res) => {
+//   res.json(await getAllUsers())   /// change this later
+// })
 
 server.post('/api/users', async (req, res) => {
   res.status(201).json(await insertUser(req.body))
