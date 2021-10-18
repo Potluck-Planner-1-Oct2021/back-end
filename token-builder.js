@@ -4,9 +4,8 @@ module.exports = function (user) {
     // we need a lib to build the token: 'jsonwebtoken'
     // we need a secret string only the server knows about
     const payload = {
-        subject: user.id,
+        subject: user.user_id,
         username: user.username,
-        role: user.role,
     }
     const options = {
         expiresIn: '1d'
