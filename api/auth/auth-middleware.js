@@ -1,6 +1,8 @@
 const { findBy } = require('../users/user-model');
 
-async function restricted(req, res, next) { }
+async function restricted(req, res, next) {
+    next();
+}
 
 async function checkUsernameFree(req, res, next) {
     try {
@@ -35,10 +37,16 @@ async function checkUsernameExists(req, res, next) {
 
 async function checkPasswordLength(req, res, next) {
     try {
-        const password = req.body.password;
-        if (!password || password.length < 3) {
-            next({ status: 422, message: 'Password must be longer than 3 chars' });
+        const { password, username } = req.body;
+        if (!password || password.length < 3 || !username || !username.trim()) {
+            next({
+                status: 422,
+                message:
+                    'Password must be longer than 3 chars and username is required',
+            });
         } else {
+            req.body = { username: username.trim(), password: password.trim() };
+
             next();
         }
     } catch (error) {
