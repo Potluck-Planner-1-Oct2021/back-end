@@ -14,7 +14,8 @@ async function findById(user_id) {
         .first();
 }
 async function add(user) {
-    const [newUserObject] = await db('users').insert(user, ['username', 'password'])
+    console.log(user.email)
+    const [newUserObject] = await db('users').insert(user, ['username', 'password', 'email'])
     return newUserObject
 }
 

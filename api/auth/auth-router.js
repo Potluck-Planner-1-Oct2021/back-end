@@ -12,11 +12,10 @@ router.post(
     checkUsernameFree,
     checkPasswordLength,
     async (req, res, next) => {
-        console.log(req.body.password);
+        console.log(req.body.email);
         try {
             const hash = bcryptjs.hashSync(req.body.password, 4);
             req.body.password = hash;
-            console.log(req.body.password);
             const newUser = await add(req.body);
             res.status(200).json(newUser);
         } catch (error) {
