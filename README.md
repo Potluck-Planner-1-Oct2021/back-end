@@ -8,7 +8,7 @@ to register a new account requires the following:
  - [1] username
  - [2] password
  - [3] email
-to sign/login into account requires the following:
+- to sign/login into account requires the following:
  - [1] username
  - [2] password
 
