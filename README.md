@@ -17,7 +17,7 @@ Authentication will be implemented using JSON Web Tokens.
 - [ ] to sign in to the created account use `[POST] method` to the following address 
 -  ` https://potluckaapi.herokuapp.com/api/auth/login`
 
-- [ ] to see all the users use `[GET]` to the following address you will get array of data 
+- [ ] to see all the users use `[GET]` to the following address you will get an array with all the users and thier information in it
 -   ` https://potluckaapi.herokuapp.com/api/users`
     
 
