@@ -5,12 +5,12 @@
 Authentication will be implemented using JSON Web Tokens.
 
 to register a new account requires the following:
- - [1] username
- - [2] password
- - [3] email
+    - [1] username
+    - [2] password
+   - [3] email
 - to sign/login into account requires the following:
- - [1] username
- - [2] password
+    - [1] username
+    - [2] password
 
 - [ ] to register a new account use `[POST] method` to the following address 
 -  ` https://potluckaapi.herokuapp.com/api/auth/register`
