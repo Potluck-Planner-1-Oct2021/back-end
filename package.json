@@ -12,7 +12,8 @@
     "databaseh": "heroku pg:psql -a potluckaapi",
     "seedh": "heroku run knex seed:run -a potluckaapi",
     "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
-    "deploy": "git push heroku main"
+    "deploy": "git push heroku main",
+    "table": "npm run rollback && npm run migrate && npm run seed"
   },
   "engines": {
     "node": "16.10.0",

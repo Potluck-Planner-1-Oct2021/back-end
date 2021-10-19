@@ -19,7 +19,7 @@ async function checkUsernameFree(req, res, next) {
 }
 
 async function checkUsernameExists(req, res, next) {
-    console.log(req.body.email);
+
     try {
         const { username } = req.body;
         const usernameexist = await findBy({ username: username });

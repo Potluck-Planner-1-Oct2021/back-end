@@ -15,11 +15,14 @@ exports.up = async (knex) => {
       potluck.time("time").notNullable();
       potluck.string("location").notNullable();
       potluck.integer("user_id")
-        .notNullable()
         .unsigned()
+        .notNullable()
         .references("user_id")
-        .inTable("users");
+        .inTable("users")
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
     })
+
     .createTable("foods", food => {
       food.increments("food_id");
       food.string("food_name").notNullable();
@@ -30,12 +33,16 @@ exports.up = async (knex) => {
         .notNullable()
         .unsigned()
         .references("potluck_id")
-        .inTable("potlucks");
+        .inTable("potlucks")
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       pfood.integer("food_id")
         .notNullable()
         .unsigned()
         .references("food_id")
-        .inTable("foods");
+        .inTable("foods")
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
     })
     .createTable("guests", guest => {
       guest.increments("guest_id");
@@ -43,16 +50,22 @@ exports.up = async (knex) => {
         .notNullable()
         .unsigned()
         .references("potluck_id")
-        .inTable("potlucks");
+        .inTable("potlucks")
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       guest.integer("potluck_food_id")
         .unsigned()
         .references("potluck_food_id")
-        .inTable("potluck_foods");
+        .inTable("potluck_foods")
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       guest.integer("user_id")
         .notNullable()
         .unsigned()
         .references("user_id")
-        .inTable("users");
+        .inTable("users")
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       guest.boolean("accepted")
         .defaultTo(false);
     });
