@@ -4,7 +4,7 @@ const {
     checkUsernameExists,
     checkUsernameFree,
 } = require('./auth-middleware');
-const { add, findBy } = require('../users/user-model');
+const { add } = require('../users/user-model');
 const router = require('express').Router();
 const buildToken = require('../../token-builder');
 router.post(
@@ -12,7 +12,6 @@ router.post(
     checkUsernameFree,
     checkPasswordLength,
     async (req, res, next) => {
-        console.log(req.body.email);
         try {
             const hash = bcryptjs.hashSync(req.body.password, 4);
             req.body.password = hash;
