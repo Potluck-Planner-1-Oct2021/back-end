@@ -1,4 +1,6 @@
 #### Endpoints
+- ` https://potluckaapi.herokuapp.com
+
 
 Authentication will be implemented using JSON Web Tokens.
 
