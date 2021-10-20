@@ -8,6 +8,9 @@ exports.seed = function (knex) {
         {
           food_name: 'spaghetti'
         },
+        {
+          food_name: 'hamberger'
+        },
       ]);
     });
 };

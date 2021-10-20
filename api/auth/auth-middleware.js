@@ -5,7 +5,7 @@ async function restricted(req, res, next) {
 }
 
 async function checkUsernameFree(req, res, next) {
-    console.log(req.body.email);
+
     try {
         const usernameexist = await findBy({ username: req.body.username });
         if (usernameexist[0]) {
@@ -47,7 +47,7 @@ async function checkPasswordLength(req, res, next) {
                     'Password must be longer than 3 chars and username is required',
             });
         } else {
-            req.body = { username: username.trim(), password: password.trim(), email: email.trim() };
+            req.body = { username: username.trim(), password: password.trim(), email: email };
 
             next();
         }

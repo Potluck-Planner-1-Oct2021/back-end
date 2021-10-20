@@ -13,11 +13,98 @@ Authentication will be implemented using JSON Web Tokens.
 
 - [ ] to register a new account use `[POST] method` to the following address
 - ` https://potluckaapi.herokuapp.com/api/auth/register`
+example : on postman => Select Body -  chose raw and change where it said text to JSON
+```
+{
+    "username": "jim",
+    "password": "1234"
+}
+```
+### a successful respose will look like this ,depending on entering email since email is not required
+```
+{
+    "username": "jim",
+    "password": "$2a$04$uAAmGlQDDkPWmAY4j1JHA.ZXfGYDJsU13NS.Y8hY8tcGzFZnWivIm",
+    "email": null
+}
+```
+
 - [ ] to sign in to the created account use `[POST] method` to the following address
 - ` https://potluckaapi.herokuapp.com/api/auth/login`
 
+
+ ### a successful respose will send bad a token and respose will look like the following: 
+```
+  {
+    "message": "welcome jim!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo0LCJ1c2VybmFtZSI6ImppbSIsImlhdCI6MTYzNDcxMTgxNiwiZXhwIjoxNjM0Nzk4MjE2fQ.0uSh0MFO62mAtO4yffRO3WsbEVpnrmL-jRgEmkXFN6c"
+}
+ ```
+### user endpoints
+
+
+
 - [ ] to see all the users use `[GET]` to the following address you will get an array with all the users and thier information in it
-- ` https://potluckaapi.herokuapp.com/api/users`
+- ` https://potluckaapi.herokuapp.com`
+
+
+
+- [ ] `[GET] /api/users`
+  - Returns an array of users as the body of the response.
+  - If there are no users it responds with an empty array.
+- [ ] `[GET] /api/users/:id`
+  - Returns a user with the given `id` as the body of the response.
+  - If there is no project with the given `id` it responds with a status code 404.
+  - 
+  $$$ 
+- [ ] `[POST] /api/projects`
+  - Returns the newly created project as the body of the response.
+  - If the request body is missing any of the required fields it responds with a status code 400.
+- [ ] `[PUT] /api/projects/:id`
+  - Returns the updated project as the body of the response.
+  - If there is no project with the given `id` it responds with a status code 404.
+  - If the request body is missing any of the required fields it responds with a status code 400.
+- [ ] `[DELETE] /api/projects/:id`
+  - Returns no response body.
+  - If there is no project with the given `id` it responds with a status code 404.
+- [ ] `[GET] /api/projects/:id/actions`
+  - Returns an array of actions (could be empty) belonging to a project with the given `id`.
+  - If there is no project with the given `id` it responds with a status code 404.
+
+Inside `api/actions/actions-router.js` build endpoints for performing CRUD operations on _actions_:
+
+- [ ] `[GET] /api/actions`
+  - Returns an array of actions (or an empty array) as the body of the response.
+- [ ] `[GET] /api/actions/:id`
+  - Returns an action with the given `id` as the body of the response.
+  - If there is no action with the given `id` it responds with a status code 404.
+- [ ] `[POST] /api/actions`
+  - Returns the newly created action as the body of the response.
+  - If the request body is missing any of the required fields it responds with a status code 400.
+  - When adding an action make sure the `project_id` provided belongs to an existing `project`.
+- [ ] `[PUT] /api/actions/:id`
+  - Returns the updated action as the body of the response.
+  - If there is no action with the given `id` it responds with a status code 404.
+  - If the request body is missing any of the required fields it responds with a status code 400.
+- [ ] `[DELETE] /api/actions/:id`
+  - Returns no response body.
+  - If there is no action with the given `id` it responds with a status code 404.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Users table
 

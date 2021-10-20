@@ -9,5 +9,15 @@ router.get('/', restricted, async (req, res) => {
     res.status(200).json(allUsers)
 })
 
+router.get('/:id', restricted, async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const allUsers = await Um.findById(id)
+        res.status(200).json(allUsers)
+
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router;

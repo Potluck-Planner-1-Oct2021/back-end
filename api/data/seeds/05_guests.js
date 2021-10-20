@@ -11,6 +11,12 @@ exports.seed = function (knex) {
           user_id: 1,
           accepted: false,
         },
+        {
+          potluck_id: 1,
+          potluck_food_id: 2,
+          user_id: 1,
+          accepted: false,
+        },
       ]);
     });
 };

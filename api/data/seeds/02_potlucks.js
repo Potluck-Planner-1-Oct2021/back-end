@@ -11,6 +11,20 @@ exports.seed = function (knex) {
           time: '12:00:00',
           user_id: 1,
           location: 'U.S.A'
+        },
+        {
+          potluck_name: 'rowValue2',
+          date: '10-30-2021',
+          time: '13:00:00',
+          user_id: 1,
+          location: 'U.S.A'
+        },
+        {
+          potluck_name: 'rowValue3',
+          date: '10-30-2021',
+          time: '13:00:00',
+          user_id: 1,
+          location: 'U.S.A'
         }
       ]);
     });

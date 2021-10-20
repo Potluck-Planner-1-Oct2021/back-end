@@ -9,6 +9,10 @@ exports.seed = function (knex) {
           potluck_id: 1,
           food_id: 1
         },
+        {
+          potluck_id: 1,
+          food_id: 2
+        },
       ]);
     });
 };
