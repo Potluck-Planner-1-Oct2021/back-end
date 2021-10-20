@@ -91,7 +91,6 @@ http://localhost:5000/api/potluck/create/2
 }
 
 ```
-
 ```
  response would be 
 {
