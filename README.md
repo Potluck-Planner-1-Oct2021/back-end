@@ -2,123 +2,249 @@
 
 Authentication will be implemented using JSON Web Tokens.
 
+### user endpoints
+
 - to register a new account requires the following:
+
   - [1] username
   - [2] password
-  - [3] email
+
 - to sign/login into account requires the following:
 
   - [1] username
   - [2] password
 
 - [ ] to register a new account use `[POST] method` to the following address
-- ` https://potluckaapi.herokuapp.com/api/auth/register`
-example : on postman => Select Body -  chose raw and change where it said text to JSON
+- ` https://potluckaapi.herokuapp.com/api/users/register`
+  example : on postman => Select Body - chose raw and change where it said text to JSON
+
 ```
 {
-    "username": "jim",
-    "password": "1234"
+    "username":"tomm",
+    "password":"123123"
 }
 ```
+
 ### a successful respose will look like this ,depending on entering email since email is not required
+
 ```
 {
-    "username": "jim",
-    "password": "$2a$04$uAAmGlQDDkPWmAY4j1JHA.ZXfGYDJsU13NS.Y8hY8tcGzFZnWivIm",
-    "email": null
+    "username": "tomm"
 }
 ```
 
 - [ ] to sign in to the created account use `[POST] method` to the following address
 - ` https://potluckaapi.herokuapp.com/api/auth/login`
 
+### a successful respose will send bad a token and respose will look like the following:
 
- ### a successful respose will send bad a token and respose will look like the following: 
 ```
   {
-    "message": "welcome jim!",
+    "message": "welcome tomm!",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo0LCJ1c2VybmFtZSI6ImppbSIsImlhdCI6MTYzNDcxMTgxNiwiZXhwIjoxNjM0Nzk4MjE2fQ.0uSh0MFO62mAtO4yffRO3WsbEVpnrmL-jRgEmkXFN6c"
 }
- ```
-### user endpoints
-
-
-
-- [ ] to see all the users use `[GET]` to the following address you will get an array with all the users and thier information in it
-- ` https://potluckaapi.herokuapp.com`
-
-
-
-- [ ] `[GET] /api/users`
-  - Returns an array of users as the body of the response.
-  - If there are no users it responds with an empty array.
-- [ ] `[GET] /api/users/:id`
-  - Returns a user with the given `id` as the body of the response.
-  
-    - ### example 
-    - postman =>  http://localhost:5000/api/users/1
-
- - - response 
 ```
+
+## to search for specific user `
+
+- [ ] `[GET] /api/users/ username`
+
+- Returns an array of users as the body of the response.
+- - exmaple: http://localhost:5000/api/users/ehsan
+```
+[
+   "ehsan"
+]
+```
+
+
+
+
+### potluck endpoints
+this will require token to be sent to the backend 
+
+
+[ ] `[GET] /api/potlucks`
+will return an array of potlucks
+http://localhost:5000/api/potlucks
+```
+[
+    {
+        "potluck_id": 1,
+        "potluck_name": "rowValue1",
+        "date": "2021-09-30T07:00:00.000Z",
+        "time": "12:00:00",
+        "location": "U.S.A",
+        "user_id": 1
+    },
+    {
+        "potluck_id": 2,
+        "potluck_name": "rowValue2",
+        "date": "2021-10-30T07:00:00.000Z",
+        "time": "13:00:00",
+        "location": "U.S.A",
+        "user_id": 1
+    },
+]
+```
+[ ] `[GET] /api/potluck /:potluck_id`
+
+- - Returns a object containing single putlock of given id
+```
+http://localhost:5000/api/potlucks/1
 {
-    "user_id": 2,
-    "username": "tom",
-    "putlocks": [
+    "potluck_id": 1,
+    "potluck_name": "rowValue1",
+    "date": "2021-09-30T07:00:00.000Z",
+    "time": "12:00:00",
+    "location": "U.S.A",
+    "foods": [
         {
-            "potluck_id": null,
-            "potluck_name": null,
-            "date": null,
-            "time": null,
-            "location": null
+            "food_name": "spaghetti"
+        },
+        {
+            "food_name": "hamberger"
+        }
+    ],
+    "guests": [
+        {
+            "username": "ehsan",
+            "food_name": "spaghetti",
+            "accepted": false,
+            "guest_id": 1,
+            "potluck_food_id": 1
+        },
+        {
+            "username": "ehsan",
+            "food_name": "hamberger",
+            "accepted": false,
+            "guest_id": 2,
+            "potluck_food_id": 2
         }
     ]
 }
-
 ```
 
-- [ ] `[POST] /api/potluck/create /:user_id`
+
+
+- [ ] `[POST] /api/potlucks/`
+the token needs to be sent to the sever fo this to work
   - Returns the newly created project as the body of the response.
-  
+
 ```
 postman example ==>
-http://localhost:5000/api/potluck/create/2 
+http://localhost:5000/api/potlucks/
 {
-
-   "potluck_name": "asdg",
-            "date": "2022-10-30",
-            "time": "14:00:00",
-            "location": "U.S.A"
+    "potluck_name": "rowValue2",
+        "date": "2021-10-30T07:00:00.000Z",
+        "time": "13:00:00",
+        "location": "U.S.A",
+         "guests": ["guest 1", "guest 2"],
+        "foods": ["food 1", "foood 2"]
+        
 }
 
 ```
+
 ```
- response would be 
+ response would be
 {
-    "user_id": 2,
-    "potluck_name": "asdg",
+    "potluck_name": "rowValue2",
+    "date": "2021-10-30T07:00:00.000Z",
+    "time": "13:00:00",
     "location": "U.S.A",
-    "date": "2022-10-30T07:00:00.000Z",
-    "time": "14:00:00"
+    "potluck_id": 5,
+    "user_id": 3
 }
+```
+
+`[DELETE] /api/potlucks /:potluck_id`
+
+- Will delete a putlock with given id and will return
+- the deleted putlock as the response
+
+
+```
+exmaple on post man    ===> http://localhost:5000/api/potlucks/1
+{
+    "potluck_name": "rowValue2",
+        "date": "2021-10-30T07:00:00.000Z",
+        "time": "13:00:00",
+        "location": "U.S.A",
+         "guests": ["guest 1", "guest 2"],
+        "foods": ["food 1", "foood 2"]
+        
+}
+```
+
+```
+response
+{
+    "potluck_id": 4,
+    "potluck_name": "rowValue2",
+    "date": "2021-10-30T07:00:00.000Z",
+    "time": "13:00:00",
+    "location": "U.S.A",
+    "user_id": 3
+}
+
+```
+
+### foods endpoints 
+
+
+`[GET] /api/foods`
+will return a list (array) of all the available foods
+example:  http://localhost:5000/api/foods/
+
+```
+response
+
+[
+    {
+        "food_id": 1,
+        "food_name": "spaghetti"
+    },
+    {
+        "food_id": 2,
+        "food_name": "hamberger"
+    }
+]
 ```
 
 
 
 
 
+`[GET] /api/foods/foodName`
+
+will return a list (array) of a single food that have been serched 
+ if the food does not exist, it will return empty array
+-- example: http://localhost:5000/api/foods/spaghetti
+```
+response
+
+[
+    {
+        "food_id": 1,
+        "food_name": "spaghetti"
+    }
+]
+```
 
 
 
+### guests endpoints 
+still workin on it 
+`[put] /api/guests/guest_id`
 
+for now it returns 
 
-
-
-
-
-
-
-
-
+```
+{
+    "message": "guest does not exist"
+}
+```
 
 
 #### Users table
@@ -128,7 +254,7 @@ http://localhost:5000/api/potluck/create/2
 | user_id  | unsigned integer | primary key, auto-increments, generated by db |
 | username | string           | required, unique                              |
 | password | string           | required                                      |
-| email    | string           | not required ,unique                          |
+
 
 #### potlucks table
 
